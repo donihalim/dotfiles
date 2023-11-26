@@ -1,0 +1,9 @@
+Dotfiles
+--------
+Personal dotfiles managed using GNU Stow
+
+
+Installation
+------------
+git clone https://github.com/donihalim/dotfiles.git ~/.dotfiles && cd $_
+make all
