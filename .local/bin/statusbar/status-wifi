@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if=wlp59s0
+    while IFS=$': \t' read -r label value
+    do
+        case $label in SSID) SSID=$value
+            ;;
+        signal) SIGNAL=$value
+            ;;
+    esac
+done < <(iw "$if" link)
+test "$SIGNAL" && echo -e "$SSID $SIGNAL"

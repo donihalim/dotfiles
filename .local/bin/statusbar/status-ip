@@ -1,0 +1,3 @@
+#!/bin/bash
+
+echo -e "$(ip -j route get 8.8.8.8 | jq -r ".[0].prefsrc")"

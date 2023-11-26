@@ -1,0 +1,11 @@
+#!/bin/bash
+
+hash acpi || return 0
+onl="$(grep "on-line" <(acpi -V))"
+charge="$(awk '{ sum += $1 } END { print sum }' /sys/class/power_supply/BAT*/capacity)"
+if test -z "$onl"
+then
+    echo -e "${charge}"
+else
+    echo -e "${charge}"
+fi

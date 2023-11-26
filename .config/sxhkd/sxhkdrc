@@ -1,0 +1,34 @@
+# reload sxhkd
+super + shift + Escape
+	pkill -USR1 -x sxhkd
+
+Print
+    flameshot gui
+
+XF86MonBrightness{Up,Down}
+    brightnessctl set {5+,5-}
+
+XF86Audio{RaiseVolume,LowerVolume,Mute,MicMute}
+    pamixer {-i1,-d1,-t,--source 1 -t}
+
+# dmenu clipboard
+super + v
+    clipmenu -i
+
+# dmenu screen record
+super + shift + r
+    dmenu-record
+
+# dmenu calculator
+super + equal
+    =
+
+# open browser
+super + o ; {c,f}
+    {google-chrome,firefox}
+
+# open file manager
+super + o ; {p}
+    {pcmanfm}
+
+# vim: set ft=sxhkdrc:
