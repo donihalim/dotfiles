@@ -1,16 +1,22 @@
-#!/bin/sh
+#!/bin/bash -x
 
 systemctl --user import-environment DISPLAY
+
 xinput --set-prop 10 "libinput Tapping Enabled" 1
-picom --backend glx --vsync -b
-hsetroot -fill $HOME/pictures/wallpaper/"Hiroshi Nagai - Farm".jpg &
 
-xrdb $HOME/.Xresources & xrdbpid=$!
-xss-lock -- slock &
+xrdb -merge $HOME/.Xresources
 
-autostart="sxhkd dunst clipmenud dwmblocks"
-for program in $autostart; do
-    pidof -sx "$program" || "$program" &
+autostart=(
+    sxhkd \
+    dunst \
+    dwmblocks \
+    clipmenud \
+    "xss-lock -- slock" \
+    "picom --backend glx --vsync -b" \
+    "hsetroot -fill $XDG_DATA_HOME/bg.jpg"
+)
+
+for program in "${autostart[@]}"; do
+    # https://www.baeldung.com/linux/bash-extract-first-word#using-parameter-expansion
+    pidof -sx "${program%% *}" || ${program} &
 done >/dev/null 2>&1
-
-[ -n "$xrdbpid" ] && wait "$xrdbpid"
