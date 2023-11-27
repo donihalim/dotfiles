@@ -1,12 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 
-if=wlp59s0
-    while IFS=$': \t' read -r label value
-    do
-        case $label in SSID) SSID=$value
-            ;;
-        signal) SIGNAL=$value
-            ;;
-    esac
-done < <(iw "$if" link)
-test "$SIGNAL" && echo -e "$SSID $SIGNAL"
+if [ "$(cat /sys/class/net/w*/operstate 2>/dev/null)" = 'up' ] ; then
+    level="$(awk '/^\s*w/ {print $4}' /proc/net/wireless | sed 's/\./ /g')dBm"
+    ssid="$(iw dev | grep ssid | awk '{print $2}')"
+elif [ "$(cat /sys/class/net/w*/operstate 2>/dev/null)" = 'down' ] ; then
+    [ "$(cat /sys/class/net/w*/flags 2>/dev/null)" = '0x1003' ] && level=""; ssid=""
+fi
+
+printf "%s %s\n" "$ssid" "$level"
