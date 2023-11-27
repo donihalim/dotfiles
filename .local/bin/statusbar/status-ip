@@ -1,3 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
-echo -e "$(ip -j route get 8.8.8.8 | jq -r ".[0].prefsrc")"
+ip="$(ip -j route get 8.8.8.8 | jq -r ".[0].prefsrc")"
+printf "%s" "$ip"
