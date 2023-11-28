@@ -20,5 +20,6 @@ PATH="$PATH:$HOME/.local/bin/statusbar"
 export PATH
 
 if [[ -f ~/.bashrc ]] ; then
+    # shellcheck source=/dev/null
     . ~/.bashrc
 fi
