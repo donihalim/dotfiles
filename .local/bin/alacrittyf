@@ -1,0 +1,10 @@
+#!/bin/sh
+
+alacritty \
+    -o "window.class.instance=AlacrittyF" \
+    -o "window.class.general=AlacrittyF" \
+    -o "window.dimensions.columns=84" \
+    -o "window.dimensions.lines=28" \
+    -o "window.position.x=682" \
+    -o "window.position.y=252" \
+    -e "$1"
