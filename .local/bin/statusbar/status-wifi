@@ -1,10 +1,10 @@
 #!/bin/sh
 
-if [ "$(cat /sys/class/net/w*/operstate 2>/dev/null)" = 'up' ] ; then
+if [ "$(cat /sys/class/net/wl*/operstate 2>/dev/null)" = 'up' ] ; then
     level="$(awk '/^\s*w/ {print $4}' /proc/net/wireless | sed 's/\./ /g')dBm"
     ssid="$(iw dev | grep ssid | awk '{print $2}')"
-elif [ "$(cat /sys/class/net/w*/operstate 2>/dev/null)" = 'down' ] ; then
-    [ "$(cat /sys/class/net/w*/flags 2>/dev/null)" = '0x1003' ] && level=""; ssid=""
+elif [ "$(cat /sys/class/net/wl*/operstate 2>/dev/null)" = 'down' ] ; then
+    [ "$(cat /sys/class/net/wl*/flags 2>/dev/null)" = '0x1003' ] && level=""; ssid=""
 fi
 
 printf "%s %s\n" "$ssid" "$level"
