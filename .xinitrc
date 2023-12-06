@@ -1,9 +1,7 @@
-#!/bin/bash -x
+#!/bin/sh
 
-exec >/tmp/startx$$.log 2>&1
-
-if [ -f $HOME/.xprofile ]; then
-    . $HOME/.xprofile
+if [ -f "$HOME"/.xprofile ]; then
+    . "$HOME"/.xprofile
 fi
 
-exec startdwm 2> ~/tmp/dwm.log
+exec dwm.sh 2> "$HOME"/tmp/dwm.log
