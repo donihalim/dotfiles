@@ -1,6 +1,6 @@
 test -z "$PS1" && return
-test -f $HOME/.bash_aliases && . $HOME/.bash_aliases
-test -d $HOME/.bash_history/ || mkdir $HOME/.bash_history/
+test -f "$HOME"/.bash_aliases && . "$HOME"/.bash_aliases
+test -d "$HOME"/.bash_history/ || mkdir "$HOME"/.bash_history/
 
 set -o vi
 bind -m vi-insert '\c-l':clear-screen
