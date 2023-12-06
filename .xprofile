@@ -1,22 +1,22 @@
-#!/bin/bash -x
+#!/bin/bash
 
 systemctl --user import-environment DISPLAY
 
-xinput --set-prop 10 "libinput Tapping Enabled" 1
+xinput --set-prop 9 "libinput Tapping Enabled" 1
 
-xrdb -merge $HOME/.Xresources
+xrdb -merge "$HOME"/.Xresources
 
-autostart=(
+programs=(
     sxhkd \
     dunst \
     dwmblocks \
     clipmenud \
+    poweralertd \
     "xss-lock -- slock" \
     "picom --backend glx --vsync -b" \
     "hsetroot -fill $XDG_DATA_HOME/bg.jpg"
 )
 
-for program in "${autostart[@]}"; do
-    # https://www.baeldung.com/linux/bash-extract-first-word#using-parameter-expansion
+for program in "${programs[@]}"; do
     pidof -sx "${program%% *}" || ${program} &
 done >/dev/null 2>&1
