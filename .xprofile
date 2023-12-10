@@ -2,7 +2,11 @@
 
 systemctl --user import-environment DISPLAY
 
-xinput --set-prop 9 "libinput Tapping Enabled" 1
+setxkbmap -model thinkpad -layout us -option caps:none
+
+xinput --set-prop 'Synaptics TM3381-002' 'libinput Tapping Enabled' 1
+xinput --set-prop 'TPPS/2 Elan TrackPoint' 'libinput Accel Speed' 1.000000
+xinput --set-prop 'TPPS/2 Elan TrackPoint' 'libinput Natural Scrolling Enabled' 1
 
 xrdb -merge "$HOME"/.Xresources
 
@@ -10,11 +14,11 @@ programs=(
     sxhkd \
     dunst \
     dwmblocks \
-    clipmenud \
-    poweralertd \
     "xss-lock -- slock" \
-    "picom --backend glx --vsync -b" \
-    "hsetroot -fill $XDG_DATA_HOME/bg.jpg"
+    "copyq --start-server" \
+    "batsignal -w 20 -c 10 -d 5 -f 80 -b" \
+    "hsetroot -fill $XDG_DATA_HOME/bg.jpg" \
+    "picom --config $XDG_CONFIG_HOME/picom/picom.conf -b"
 )
 
 for program in "${programs[@]}"; do
