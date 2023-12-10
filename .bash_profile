@@ -18,6 +18,8 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 PATH="$PATH:/sbin"
 PATH="$PATH:$HOME/.local/bin"
 PATH="$PATH:$HOME/.local/bin/statusbar"
+PATH="$PATH:/opt/nvim-linux64/bin"
+PATH="$PATH:/opt/batsignal/bin"
 export PATH
 
 if [[ -f "$HOME"/.bashrc ]] ; then

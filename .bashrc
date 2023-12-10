@@ -31,6 +31,10 @@ export FNM_BIN="$FNM_DIR/bin"
 export PATH=$PATH:$FNM_BIN
 eval "$(fnm env --use-on-cd)"
 
+if [ -x "$(command -v pipx)" ]; then
+    eval "$(register-python-argcomplete pipx)"
+fi
+
 # enable bash completion in interactive shells
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
