@@ -14,9 +14,10 @@ programs=(
     sxhkd \
     dunst \
     dwmblocks \
+    clipmenud \
+    poweralertd \
     "xss-lock -- slock" \
-    "copyq --start-server" \
-    "batsignal -w 20 -c 10 -d 5 -f 80 -b" \
+    "espanso service start --unmanaged" \
     "hsetroot -fill $XDG_DATA_HOME/bg.jpg" \
     "picom --config $XDG_CONFIG_HOME/picom/picom.conf -b"
 )
