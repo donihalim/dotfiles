@@ -31,9 +31,9 @@ fi
 
 case ${TERM} in
   alacritty*|tmux*)
-    PROMPT_COMMAND+=("history -a; history -n; printf \"\033]0;%s@%s:%s\007\" \"${USER}\" \"${HOSTNAME%%.*}\" \"${PWD/#$HOME/\~}\"")
+    PROMPT_COMMAND+=('history -a; history -n; printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}"')
     ;;
   screen*)
-    PROMPT_COMMAND+=("history -a; history -n; printf \"\033_%s@%s:%s\033\\\" \"${USER}\" \"${HOSTNAME%%.*}\" \"${PWD/#$HOME/\~}\"")
+    PROMPT_COMMAND+=('history -a; history -n; printf "\033_%s@%s:%s\033\\" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}"')
     ;;
 esac
