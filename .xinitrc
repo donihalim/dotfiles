@@ -4,4 +4,4 @@ if [ -f "$HOME"/.xprofile ]; then
     source "$HOME"/.xprofile
 fi
 
-exec dwm.sh 2> "$HOME"/tmp/dwm.log
+exec dwm 2> "$HOME"/tmp/dwm.log
