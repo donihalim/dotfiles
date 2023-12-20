@@ -7,7 +7,7 @@ height                  = 720
 origin                  = top-right
 offset                  = 7x30
 
-font                    = Monospace 11
+font                    = Monospace 9
 format                  = "<b>%s</b>\n%b\n\n[%a]"
 foreground              = "#bbbbbb"
 background              = "#222222"
