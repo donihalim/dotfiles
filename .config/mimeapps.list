@@ -1,5 +1,4 @@
 [Default Applications]
-
 text/x-shellscript=text.desktop;
 text/plain=text.desktop;
 application/postscript=pdf.desktop;
@@ -9,3 +8,4 @@ image/jpeg=img.desktop;
 image/gif=img.desktop;
 video/x-matroska=video.desktop;
 video/mp4=video.desktop;
+x-scheme-handler/eclipse+command=_usr_lib_dbeaver_.desktop
