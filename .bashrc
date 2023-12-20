@@ -1,9 +1,7 @@
 [[ $- != *i* ]] && return
 
-PS1='[\u@\h \W]\$ '
-
-test -f "$HOME"/.bash_aliases && . "$HOME"/.bash_aliases
-test -d "$HOME"/.bash_history/ || mkdir "$HOME"/.bash_history/
+[[ -f "$HOME"/.bash_aliases ]] && source "$HOME"/.bash_aliases
+[[ -d "$HOME"/.bash_history ]] || mkdir "$HOME"/.bash_history
 
 set -o vi
 bind -m vi-insert '\c-l':clear-screen
@@ -20,20 +18,29 @@ shopt -s histappend
 
 umask 002
 
+# bash history
 export HISTFILESIZE=-1
 export HISTSIZE=-1
 export HISTCONTROL=ignoredups
 HISTFILE=$HOME/.bash_history/$(date +%Y-%m)
 
+# pipx completion
 if [ -x "$(command -v pipx)" ]; then
     eval "$(register-python-argcomplete pipx)"
 fi
 
-case ${TERM} in
-  alacritty*|tmux*)
-    PROMPT_COMMAND+=('history -a; history -n; printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}"')
-    ;;
-  screen*)
-    PROMPT_COMMAND+=('history -a; history -n; printf "\033_%s@%s:%s\033\\" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}"')
-    ;;
-esac
+# kubectl completion
+if [ -x "$(command -v kubectl)" ]; then
+    # shellcheck source=/dev/null
+    source <(kubectl completion bash)
+    complete -o default -F __start_kubectl k
+    alias k="kubectl"
+fi
+
+# helm completion
+if [ -x "$(command -v helm)" ]; then
+    # shellcheck source=/dev/null
+    source <(helm completion bash)
+    complete -o default -F __start_helm h
+    alias h="helm"
+fi
